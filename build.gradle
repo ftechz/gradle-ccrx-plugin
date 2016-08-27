@@ -1,0 +1,25 @@
+
+import org.gradle.nativeplatform.platform.internal.Architectures
+
+apply plugin: test.plugins.CcrxCompilerPlugin
+apply plugin: 'c'
+
+model {
+  toolChains {
+    ccrx(test.ccrx.Ccrx)
+  }
+
+  components {
+    firmware(NativeExecutableSpec) {
+      sources {
+        c {
+          source {
+            srcDir "code"
+            include "**/*.c"
+          }
+        }
+      }
+    }
+  }
+
+}
